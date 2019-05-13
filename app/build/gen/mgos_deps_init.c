@@ -14,9 +14,8 @@ extern bool mgos_vfs_common_init(void);
 extern bool mgos_vfs_fs_lfs_init(void);
 extern bool mgos_vfs_fs_spiffs_init(void);
 extern bool mgos_core_init(void);
-extern bool mgos_arduino_compat_init(void);
+extern bool mgos_adc_init(void);
 extern bool mgos_i2c_init(void);
-extern bool mgos_arduino_wire_init(void);
 extern bool mgos_atca_init(void);
 extern bool mgos_mqtt_init(void);
 extern bool mgos_shadow_init(void);
@@ -26,12 +25,10 @@ extern bool mgos_bme280_init(void);
 extern bool mgos_wifi_init(void);
 extern bool mgos_http_server_init(void);
 extern bool mgos_mbedtls_init(void);
-extern bool mgos_mgos_sgp30_init(void);
 extern bool mgos_rpc_common_init(void);
 extern bool mgos_rpc_service_config_init(void);
 extern bool mgos_rpc_service_fs_init(void);
 extern bool mgos_rpc_uart_init(void);
-extern bool mgos_tsl25721_init(void);
 
 static const struct lib_descr {
   const char *title;
@@ -56,14 +53,11 @@ static const struct lib_descr {
     // "core". deps: [ "freertos" "mongoose" "vfs-common" "vfs-fs-lfs" "vfs-fs-spiffs" ]
     {.title = "core", .init = mgos_core_init},
 
-    // "arduino-compat". deps: [ "core" ]
-    {.title = "arduino-compat", .init = mgos_arduino_compat_init},
+    // "adc". deps: [ "core" ]
+    {.title = "adc", .init = mgos_adc_init},
 
     // "i2c". deps: [ "core" ]
     {.title = "i2c", .init = mgos_i2c_init},
-
-    // "arduino-wire". deps: [ "arduino-compat" "core" "i2c" ]
-    {.title = "arduino-wire", .init = mgos_arduino_wire_init},
 
     // "atca". deps: [ "i2c" ]
     {.title = "atca", .init = mgos_atca_init},
@@ -92,9 +86,6 @@ static const struct lib_descr {
     // "mbedtls". deps: [ ]
     {.title = "mbedtls", .init = mgos_mbedtls_init},
 
-    // "mgos-sgp30". deps: [ "core" "i2c" ]
-    {.title = "mgos-sgp30", .init = mgos_mgos_sgp30_init},
-
     // "rpc-common". deps: [ "core" "http-server" "mongoose" ]
     {.title = "rpc-common", .init = mgos_rpc_common_init},
 
@@ -106,9 +97,6 @@ static const struct lib_descr {
 
     // "rpc-uart". deps: [ "core" "rpc-common" ]
     {.title = "rpc-uart", .init = mgos_rpc_uart_init},
-
-    // "tsl25721". deps: [ "arduino-compat" "arduino-wire" "core" ]
-    {.title = "tsl25721", .init = mgos_tsl25721_init},
 
 };
 

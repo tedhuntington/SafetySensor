@@ -7,8 +7,8 @@
 #include <stddef.h>
 #include "mgos_config.h"
 
-const struct mgos_conf_entry mgos_config_schema_[210] = {
-  {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 209},
+const struct mgos_conf_entry mgos_config_schema_[212] = {
+  {.type = CONF_TYPE_OBJECT, .key = "", .offset = 0, .num_desc = 211},
   {.type = CONF_TYPE_OBJECT, .key = "debug", .offset = offsetof(struct mgos_config, debug), .num_desc = 10},
   {.type = CONF_TYPE_STRING, .key = "udp_log_addr", .offset = offsetof(struct mgos_config, debug.udp_log_addr)},
   {.type = CONF_TYPE_INT, .key = "mbedtls_level", .offset = offsetof(struct mgos_config, debug.mbedtls_level)},
@@ -20,6 +20,17 @@ const struct mgos_conf_entry mgos_config_schema_[210] = {
   {.type = CONF_TYPE_STRING, .key = "mg_mgr_hexdump_file", .offset = offsetof(struct mgos_config, debug.mg_mgr_hexdump_file)},
   {.type = CONF_TYPE_STRING, .key = "stdout_topic", .offset = offsetof(struct mgos_config, debug.stdout_topic)},
   {.type = CONF_TYPE_STRING, .key = "stderr_topic", .offset = offsetof(struct mgos_config, debug.stderr_topic)},
+  {.type = CONF_TYPE_OBJECT, .key = "sys", .offset = offsetof(struct mgos_config, sys), .num_desc = 10},
+  {.type = CONF_TYPE_INT, .key = "esp32_adc_vref", .offset = offsetof(struct mgos_config, sys.esp32_adc_vref)},
+  {.type = CONF_TYPE_INT, .key = "esp32_adc_width", .offset = offsetof(struct mgos_config, sys.esp32_adc_width)},
+  {.type = CONF_TYPE_OBJECT, .key = "atca", .offset = offsetof(struct mgos_config, sys.atca), .num_desc = 4},
+  {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, sys.atca.enable)},
+  {.type = CONF_TYPE_INT, .key = "i2c_bus", .offset = offsetof(struct mgos_config, sys.atca.i2c_bus)},
+  {.type = CONF_TYPE_INT, .key = "i2c_addr", .offset = offsetof(struct mgos_config, sys.atca.i2c_addr)},
+  {.type = CONF_TYPE_INT, .key = "ecdh_slots_mask", .offset = offsetof(struct mgos_config, sys.atca.ecdh_slots_mask)},
+  {.type = CONF_TYPE_STRING, .key = "tz_spec", .offset = offsetof(struct mgos_config, sys.tz_spec)},
+  {.type = CONF_TYPE_INT, .key = "wdt_timeout", .offset = offsetof(struct mgos_config, sys.wdt_timeout)},
+  {.type = CONF_TYPE_STRING, .key = "pref_ota_lib", .offset = offsetof(struct mgos_config, sys.pref_ota_lib)},
   {.type = CONF_TYPE_OBJECT, .key = "i2c", .offset = offsetof(struct mgos_config, i2c), .num_desc = 6},
   {.type = CONF_TYPE_INT, .key = "unit_no", .offset = offsetof(struct mgos_config, i2c.unit_no)},
   {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, i2c.enable)},
@@ -34,15 +45,6 @@ const struct mgos_conf_entry mgos_config_schema_[210] = {
   {.type = CONF_TYPE_BOOL, .key = "debug", .offset = offsetof(struct mgos_config, i2c1.debug)},
   {.type = CONF_TYPE_INT, .key = "sda_gpio", .offset = offsetof(struct mgos_config, i2c1.sda_gpio)},
   {.type = CONF_TYPE_INT, .key = "scl_gpio", .offset = offsetof(struct mgos_config, i2c1.scl_gpio)},
-  {.type = CONF_TYPE_OBJECT, .key = "sys", .offset = offsetof(struct mgos_config, sys), .num_desc = 8},
-  {.type = CONF_TYPE_OBJECT, .key = "atca", .offset = offsetof(struct mgos_config, sys.atca), .num_desc = 4},
-  {.type = CONF_TYPE_BOOL, .key = "enable", .offset = offsetof(struct mgos_config, sys.atca.enable)},
-  {.type = CONF_TYPE_INT, .key = "i2c_bus", .offset = offsetof(struct mgos_config, sys.atca.i2c_bus)},
-  {.type = CONF_TYPE_INT, .key = "i2c_addr", .offset = offsetof(struct mgos_config, sys.atca.i2c_addr)},
-  {.type = CONF_TYPE_INT, .key = "ecdh_slots_mask", .offset = offsetof(struct mgos_config, sys.atca.ecdh_slots_mask)},
-  {.type = CONF_TYPE_STRING, .key = "tz_spec", .offset = offsetof(struct mgos_config, sys.tz_spec)},
-  {.type = CONF_TYPE_INT, .key = "wdt_timeout", .offset = offsetof(struct mgos_config, sys.wdt_timeout)},
-  {.type = CONF_TYPE_STRING, .key = "pref_ota_lib", .offset = offsetof(struct mgos_config, sys.pref_ota_lib)},
   {.type = CONF_TYPE_OBJECT, .key = "device", .offset = offsetof(struct mgos_config, device), .num_desc = 2},
   {.type = CONF_TYPE_STRING, .key = "id", .offset = offsetof(struct mgos_config, device.id)},
   {.type = CONF_TYPE_STRING, .key = "license", .offset = offsetof(struct mgos_config, device.license)},
@@ -261,6 +263,39 @@ const char *mgos_config_get_debug_stdout_topic(struct mgos_config *cfg) {
 const char *mgos_config_get_debug_stderr_topic(struct mgos_config *cfg) {
   return cfg->debug.stderr_topic;
 }
+const struct mgos_config_sys *mgos_config_get_sys(struct mgos_config *cfg) {
+  return &cfg->sys;
+}
+int         mgos_config_get_sys_esp32_adc_vref(struct mgos_config *cfg) {
+  return cfg->sys.esp32_adc_vref;
+}
+int         mgos_config_get_sys_esp32_adc_width(struct mgos_config *cfg) {
+  return cfg->sys.esp32_adc_width;
+}
+const struct mgos_config_sys_atca *mgos_config_get_sys_atca(struct mgos_config *cfg) {
+  return &cfg->sys.atca;
+}
+int         mgos_config_get_sys_atca_enable(struct mgos_config *cfg) {
+  return cfg->sys.atca.enable;
+}
+int         mgos_config_get_sys_atca_i2c_bus(struct mgos_config *cfg) {
+  return cfg->sys.atca.i2c_bus;
+}
+int         mgos_config_get_sys_atca_i2c_addr(struct mgos_config *cfg) {
+  return cfg->sys.atca.i2c_addr;
+}
+int         mgos_config_get_sys_atca_ecdh_slots_mask(struct mgos_config *cfg) {
+  return cfg->sys.atca.ecdh_slots_mask;
+}
+const char *mgos_config_get_sys_tz_spec(struct mgos_config *cfg) {
+  return cfg->sys.tz_spec;
+}
+int         mgos_config_get_sys_wdt_timeout(struct mgos_config *cfg) {
+  return cfg->sys.wdt_timeout;
+}
+const char *mgos_config_get_sys_pref_ota_lib(struct mgos_config *cfg) {
+  return cfg->sys.pref_ota_lib;
+}
 const struct mgos_config_i2c *mgos_config_get_i2c(struct mgos_config *cfg) {
   return &cfg->i2c;
 }
@@ -302,33 +337,6 @@ int         mgos_config_get_i2c1_sda_gpio(struct mgos_config *cfg) {
 }
 int         mgos_config_get_i2c1_scl_gpio(struct mgos_config *cfg) {
   return cfg->i2c1.scl_gpio;
-}
-const struct mgos_config_sys *mgos_config_get_sys(struct mgos_config *cfg) {
-  return &cfg->sys;
-}
-const struct mgos_config_sys_atca *mgos_config_get_sys_atca(struct mgos_config *cfg) {
-  return &cfg->sys.atca;
-}
-int         mgos_config_get_sys_atca_enable(struct mgos_config *cfg) {
-  return cfg->sys.atca.enable;
-}
-int         mgos_config_get_sys_atca_i2c_bus(struct mgos_config *cfg) {
-  return cfg->sys.atca.i2c_bus;
-}
-int         mgos_config_get_sys_atca_i2c_addr(struct mgos_config *cfg) {
-  return cfg->sys.atca.i2c_addr;
-}
-int         mgos_config_get_sys_atca_ecdh_slots_mask(struct mgos_config *cfg) {
-  return cfg->sys.atca.ecdh_slots_mask;
-}
-const char *mgos_config_get_sys_tz_spec(struct mgos_config *cfg) {
-  return cfg->sys.tz_spec;
-}
-int         mgos_config_get_sys_wdt_timeout(struct mgos_config *cfg) {
-  return cfg->sys.wdt_timeout;
-}
-const char *mgos_config_get_sys_pref_ota_lib(struct mgos_config *cfg) {
-  return cfg->sys.pref_ota_lib;
 }
 const struct mgos_config_device *mgos_config_get_device(struct mgos_config *cfg) {
   return &cfg->device;
@@ -888,6 +896,33 @@ void mgos_config_set_debug_stdout_topic(struct mgos_config *cfg, const char *val
 void mgos_config_set_debug_stderr_topic(struct mgos_config *cfg, const char *val) {
   mgos_conf_set_str(&cfg->debug.stderr_topic, val);
 }
+void mgos_config_set_sys_esp32_adc_vref(struct mgos_config *cfg, int         val) {
+  cfg->sys.esp32_adc_vref = val;
+}
+void mgos_config_set_sys_esp32_adc_width(struct mgos_config *cfg, int         val) {
+  cfg->sys.esp32_adc_width = val;
+}
+void mgos_config_set_sys_atca_enable(struct mgos_config *cfg, int         val) {
+  cfg->sys.atca.enable = val;
+}
+void mgos_config_set_sys_atca_i2c_bus(struct mgos_config *cfg, int         val) {
+  cfg->sys.atca.i2c_bus = val;
+}
+void mgos_config_set_sys_atca_i2c_addr(struct mgos_config *cfg, int         val) {
+  cfg->sys.atca.i2c_addr = val;
+}
+void mgos_config_set_sys_atca_ecdh_slots_mask(struct mgos_config *cfg, int         val) {
+  cfg->sys.atca.ecdh_slots_mask = val;
+}
+void mgos_config_set_sys_tz_spec(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->sys.tz_spec, val);
+}
+void mgos_config_set_sys_wdt_timeout(struct mgos_config *cfg, int         val) {
+  cfg->sys.wdt_timeout = val;
+}
+void mgos_config_set_sys_pref_ota_lib(struct mgos_config *cfg, const char *val) {
+  mgos_conf_set_str(&cfg->sys.pref_ota_lib, val);
+}
 void mgos_config_set_i2c_unit_no(struct mgos_config *cfg, int         val) {
   cfg->i2c.unit_no = val;
 }
@@ -923,27 +958,6 @@ void mgos_config_set_i2c1_sda_gpio(struct mgos_config *cfg, int         val) {
 }
 void mgos_config_set_i2c1_scl_gpio(struct mgos_config *cfg, int         val) {
   cfg->i2c1.scl_gpio = val;
-}
-void mgos_config_set_sys_atca_enable(struct mgos_config *cfg, int         val) {
-  cfg->sys.atca.enable = val;
-}
-void mgos_config_set_sys_atca_i2c_bus(struct mgos_config *cfg, int         val) {
-  cfg->sys.atca.i2c_bus = val;
-}
-void mgos_config_set_sys_atca_i2c_addr(struct mgos_config *cfg, int         val) {
-  cfg->sys.atca.i2c_addr = val;
-}
-void mgos_config_set_sys_atca_ecdh_slots_mask(struct mgos_config *cfg, int         val) {
-  cfg->sys.atca.ecdh_slots_mask = val;
-}
-void mgos_config_set_sys_tz_spec(struct mgos_config *cfg, const char *val) {
-  mgos_conf_set_str(&cfg->sys.tz_spec, val);
-}
-void mgos_config_set_sys_wdt_timeout(struct mgos_config *cfg, int         val) {
-  cfg->sys.wdt_timeout = val;
-}
-void mgos_config_set_sys_pref_ota_lib(struct mgos_config *cfg, const char *val) {
-  mgos_conf_set_str(&cfg->sys.pref_ota_lib, val);
 }
 void mgos_config_set_device_id(struct mgos_config *cfg, const char *val) {
   mgos_conf_set_str(&cfg->device.id, val);

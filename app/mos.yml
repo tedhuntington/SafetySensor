@@ -34,6 +34,7 @@ libs:
   - origin: https://github.com/mongoose-os-libs/aws
   - origin: https://github.com/mongoose-os-libs/wifi
   - origin: https://github.com/mongoose-os-apps/wifi-setup-web
+  - origin: https://github.com/mongoose-os-libs/adc
   
 # Used by the mos tool to catch mos binaries incompatible with this file format
 manifest_version: 2017-05-18

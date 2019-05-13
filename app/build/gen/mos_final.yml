@@ -9,8 +9,8 @@ author: mongoose-os
 description: A demo Mongoose OS firmware for C/C++
 sources:
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/src/main.cpp
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/src/vapor.cpp
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/build/gen/mgos_deps_init.c
+- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/adc/esp32/src/esp32_adc.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/freertos/src/mgos_freertos.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/freertos/src/mgos_freertos_core_dump.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/i2c/src/mgos_i2c_master.c
@@ -51,19 +51,6 @@ sources:
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/bme280/src/mgos_bme280_c.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/bme280/src/BME280_driver/bme280.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/http-server/src/mgos_http_server.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/mgos_sgp30.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/SGP30_driver/sensirion_common.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/SGP30_driver/sgp30.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/SGP30_driver/sgp30_featureset.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/src/Print.cpp
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/src/WString.cpp
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/src/mgos_arduino.cpp
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-wire/src/mgos_arduino_wire_c.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-wire/src/mgos_arduino_wire.cpp
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/mgos_arduino_adafruit_tsl25721_c.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/mgos_tsl25721_c.c
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/TSL25721.cpp
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/mgos_arduino_adafruit_tsl25721.cpp
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/wifi/src/mgos_wifi.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/wifi/src/mjs_wifi.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/wifi/src/esp32/esp32_wifi.c
@@ -75,6 +62,7 @@ sources:
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/rpc-service-fs/src/mgos_service_filesystem.c
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/rpc-uart/src/mgos_rpc_channel_uart.c
 includes:
+- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/adc/include
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/freertos/include
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/freertos/include/esp32
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/i2c/include
@@ -98,10 +86,6 @@ includes:
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/spi/include
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/bme280/include
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/http-server/include
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/include
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/include
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-wire/include
-- /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/include
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/wifi/include
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/wifi/include/esp32
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/rpc-common/include
@@ -118,6 +102,14 @@ binary_libs:
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/build/objs/libmbedtls-esp32-latest.a
 - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/build/objs/libmongoose-esp32-latest.a
 config_schema:
+- - sys.esp32_adc_vref
+  - i
+  - 0
+  - title: ADC Vref, in mV
+- - sys.esp32_adc_width
+  - i
+  - 3
+  - title: ADC width, see ESP32 IDF
 - - i2c
   - o
   - title: I2C settings
@@ -696,9 +688,9 @@ config_schema:
 - - i2c.enable
   - true
 - - i2c.sda_gpio
-  - 32
+  - 23
 - - i2c.scl_gpio
-  - 33
+  - 22
 - - apmode
   - b
   - false
@@ -710,8 +702,7 @@ build_vars:
      CONFIG_SUPPORT_STATIC_ALLOCATION=y
   MGOS: "1"
   MGOS_ENABLE_SPI_GPIO: "0"
-  MGOS_HAVE_ARDUINO_COMPAT: "1"
-  MGOS_HAVE_ARDUINO_WIRE: "1"
+  MGOS_HAVE_ADC: "1"
   MGOS_HAVE_ATCA: "1"
   MGOS_HAVE_AWS: "1"
   MGOS_HAVE_BME280: "1"
@@ -721,7 +712,6 @@ build_vars:
   MGOS_HAVE_HTTP_SERVER: "1"
   MGOS_HAVE_I2C: "1"
   MGOS_HAVE_MBEDTLS: "1"
-  MGOS_HAVE_MGOS_SGP30: "1"
   MGOS_HAVE_MONGOOSE: "1"
   MGOS_HAVE_MQTT: "1"
   MGOS_HAVE_RPC_COMMON: "1"
@@ -730,7 +720,6 @@ build_vars:
   MGOS_HAVE_RPC_UART: "1"
   MGOS_HAVE_SHADOW: "1"
   MGOS_HAVE_SPI: "1"
-  MGOS_HAVE_TSL25721: "1"
   MGOS_HAVE_VFS_COMMON: "1"
   MGOS_HAVE_VFS_FS_LFS: "1"
   MGOS_HAVE_VFS_FS_SPIFFS: "1"
@@ -740,9 +729,6 @@ build_vars:
   MGOS_HAVE_ZZ_BOARDS: "1"
   MGOS_WIFI_ENABLE_AP_STA: "0"
 cdefs:
-  ARDUINO: "150"
-  ESP32: "1"
-  F_CPU: "160000000"
   LFS_NO_DEBUG: "1"
   MBEDTLS_ECP_ATCA: "1"
   MBEDTLS_USER_CONFIG_FILE: \"mbedtls_platform_config.h\"
@@ -759,8 +745,7 @@ cdefs:
   MGOS_ENABLE_RPC_CHANNEL_HTTP: "1"
   MGOS_ENABLE_SYS_SERVICE: "1"
   MGOS_ENABLE_WEB_CONFIG: "0"
-  MGOS_HAVE_ARDUINO_COMPAT: "1"
-  MGOS_HAVE_ARDUINO_WIRE: "1"
+  MGOS_HAVE_ADC: "1"
   MGOS_HAVE_ATCA: "1"
   MGOS_HAVE_AWS: "1"
   MGOS_HAVE_BME280: "1"
@@ -770,7 +755,6 @@ cdefs:
   MGOS_HAVE_HTTP_SERVER: "1"
   MGOS_HAVE_I2C: "1"
   MGOS_HAVE_MBEDTLS: "1"
-  MGOS_HAVE_MGOS_SGP30: "1"
   MGOS_HAVE_MONGOOSE: "1"
   MGOS_HAVE_MQTT: "1"
   MGOS_HAVE_RPC_COMMON: "1"
@@ -779,7 +763,6 @@ cdefs:
   MGOS_HAVE_RPC_UART: "1"
   MGOS_HAVE_SHADOW: "1"
   MGOS_HAVE_SPI: "1"
-  MGOS_HAVE_TSL25721: "1"
   MGOS_HAVE_VFS_COMMON: "1"
   MGOS_HAVE_VFS_FS_LFS: "1"
   MGOS_HAVE_VFS_FS_SPIFFS: "1"
@@ -795,6 +778,15 @@ modules_version: latest
 mongoose_os_version: latest
 manifest_version: "2017-05-18"
 libs_handled:
+- lib:
+    origin: https://github.com/mongoose-os-libs/adc
+    location: https://github.com/mongoose-os-libs/adc
+    name: adc
+  path: /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/adc
+  init_deps:
+  - core
+  sources:
+  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/adc/esp32/src/esp32_adc.c
 - lib:
     origin: https://github.com/mongoose-os-libs/freertos
     location: https://github.com/mongoose-os-libs/freertos
@@ -964,56 +956,6 @@ libs_handled:
   sources:
   - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/http-server/src/mgos_http_server.c
 - lib:
-    origin: https://github.com/tedhuntington/mgos-sgp30
-    location: https://github.com/tedhuntington/mgos-sgp30
-    name: mgos-sgp30
-  path: /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30
-  init_deps:
-  - core
-  - i2c
-  sources:
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/mgos_sgp30.c
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/SGP30_driver/sensirion_common.c
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/SGP30_driver/sgp30.c
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/mgos-sgp30/src/SGP30_driver/sgp30_featureset.c
-- lib:
-    origin: https://github.com/mongoose-os-libs/arduino-compat
-    location: https://github.com/mongoose-os-libs/arduino-compat
-    name: arduino-compat
-  path: /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat
-  init_deps:
-  - core
-  sources:
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/src/Print.cpp
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/src/WString.cpp
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-compat/src/mgos_arduino.cpp
-- lib:
-    origin: https://github.com/mongoose-os-libs/arduino-wire
-    location: https://github.com/mongoose-os-libs/arduino-wire
-    name: arduino-wire
-  path: /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-wire
-  init_deps:
-  - arduino-compat
-  - core
-  - i2c
-  sources:
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-wire/src/mgos_arduino_wire_c.c
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/arduino-wire/src/mgos_arduino_wire.cpp
-- lib:
-    origin: https://github.com/plantscience/tsl25721
-    location: https://github.com/plantscience/tsl25721
-    name: tsl25721
-  path: /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721
-  init_deps:
-  - arduino-compat
-  - arduino-wire
-  - core
-  sources:
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/mgos_arduino_adafruit_tsl25721_c.c
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/mgos_tsl25721_c.c
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/TSL25721.cpp
-  - /data/fwbuild-volumes/latest/apps/app/esp32/build_contexts/build_ctx_097374481/deps/tsl25721/src/mgos_arduino_adafruit_tsl25721.cpp
-- lib:
     origin: https://github.com/mongoose-os-libs/wifi
     location: https://github.com/mongoose-os-libs/wifi
     name: wifi
@@ -1102,9 +1044,8 @@ init_deps:
 - vfs-fs-lfs
 - vfs-fs-spiffs
 - core
-- arduino-compat
+- adc
 - i2c
-- arduino-wire
 - atca
 - ca-bundle
 - mqtt
@@ -1115,12 +1056,10 @@ init_deps:
 - wifi
 - http-server
 - mbedtls
-- mgos-sgp30
 - rpc-common
 - rpc-service-config
 - rpc-service-fs
 - rpc-uart
-- tsl25721
 - wifi-setup-web-ui
 - zz_boards
 - wifi-setup-web

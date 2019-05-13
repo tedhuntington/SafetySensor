@@ -4,24 +4,25 @@
   "level": 2,
   "factory_reset_gpio": -1
  },
+ "sys": {
+  "esp32_adc_width": 3,
+  "atca": {
+   "i2c_addr": 96,
+   "ecdh_slots_mask": 12
+  },
+  "wdt_timeout": 30
+ },
  "i2c": {
   "enable": true,
   "freq": 100000,
-  "sda_gpio": 32,
-  "scl_gpio": 33
+  "sda_gpio": 23,
+  "scl_gpio": 22
  },
  "i2c1": {
   "unit_no": 1,
   "freq": 100000,
   "sda_gpio": 22,
   "scl_gpio": 23
- },
- "sys": {
-  "atca": {
-   "i2c_addr": 96,
-   "ecdh_slots_mask": 12
-  },
-  "wdt_timeout": 30
  },
  "device": {
   "id": "esp32_??????"
